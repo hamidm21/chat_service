@@ -1,0 +1,41 @@
+{
+  "name": "chat_service",
+  "version": "3.0.0",
+  "description": "Goftare Project - Chat service",
+  "main": "chat_service.js",
+  "scripts": {
+    "build": "babel bin -d dist",
+    "start": "node chat_service.js",
+    "serve": "node dist/www.js",
+    "test": "jest --verbose",
+    "debug": "DEBUG=goftare:* node chat_service.js",
+    "eslint": "./node_modules/.bin/eslint"
+  },
+  "author": "Hamid <hamidmk2121@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "app-root-path": "^2.1.0",
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "debug": "^4.1.0",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "joi": "^14.3.0",
+    "kafka-node": "^3.0.1",
+    "moment-jalaali": "^0.8.3",
+    "mongoose": "^5.4.7",
+    "morgan": "^1.9.1",
+    "redis": "^2.8.0",
+    "socket.io": "^2.2.0",
+    "supports-color": "^5.5.0",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.10.0",
+    "jest": "^23.6.0",
+    "jsdoc": "^3.5.5"
+  }
+}
