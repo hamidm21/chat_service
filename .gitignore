@@ -1,6 +1,0 @@
-dist
-package-lock.json
-.babelrc
-.env
-.eslintignore
-node_modules
