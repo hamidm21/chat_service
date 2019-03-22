@@ -3,7 +3,7 @@ const winston = require('./lib/utils/logger');
 const server = require('http').createServer(app);
 const express = require('express');
 const config = require('./lib/config/config');
-const debug = require('debug')('goftare:http');
+const log = require('debug')('chat_service');
 const morgan = require('morgan');
 const path = require('path');
 const cookieParser =  require('cookie-parser');
@@ -36,7 +36,7 @@ Routes(app);
 server.listen(config.PORT , () => {
 	const flushed = start_dao.flushDB();
 	if(flushed){
-		debug(`server is running on ${config.PORT}`);		
+		log(`server is running on ${config.PORT}`);		
 	}
 });
 

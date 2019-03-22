@@ -5,7 +5,7 @@
  */
 
 var app = require('../chat_service');
-var debug = require('debug')('goftare:server');
+var log = require('debug')('chat_service:www');
 var http = require('http');
 const pid = process.pid;
 const cluster = require('cluster');
@@ -20,7 +20,7 @@ const start_dao = require('../lib/dao/start_dao');
 
 
 if (cluster.isMaster) {
-  console.log(`Master ${process.pid} is running`);
+  log(`Master ${process.pid} is running`);
 
   // Fork workers.
   for (let i = 0; i < numCPUs; i++) {
@@ -28,7 +28,7 @@ if (cluster.isMaster) {
   }
 
   cluster.on('exit', (worker, code, signal) => {
-    console.log(`worker ${worker.process.pid} died`);
+    log(`worker ${worker.process.pid} died`);
   });
 } else {
   // Workers can share any TCP connection
@@ -56,12 +56,12 @@ exports.io = require('socket.io')(server , {
 server.listen(port , () => {
   const flushed = start_dao.flushDB();
   if(flushed){
-    console.log(`Started process ${pid}`);
+    log(`Started process ${pid}`);
   }
 });
 server.on('error', onError);
 server.on('listening', onListening);
-console.log(`server is running on port ${process.env.PORT}`);
+log(`server is running on port ${process.env.PORT}`);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -120,7 +120,7 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  log('Listening on ' + bind);
 }
 
   
