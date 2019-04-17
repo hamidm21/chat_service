@@ -19,6 +19,15 @@ const io = require('socket.io')(server , {
 //const app.set('views', path.join(__dirname, 'views'))
 //const app.set('view engine', 'jade')
 // MiddleWares
+io.use((socket, next) => {
+	log('socket unCompelete -------------------');
+	const user_id = socket.handshake.query.user_id;
+	if(user_id) {
+		return next();
+	}
+	log('socket unCompelete ----------------------------------------------------------');
+	return next(new Error('socket unCompelete'));
+});
 app.use(morgan('combined' , { stream: winston.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,7 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '../landing')));
 
-//initializing
+//layers
 Init(app);
 socketHandler(io);
 Routes(app);
