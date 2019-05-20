@@ -5,7 +5,7 @@
  */
 
 var app = require('../chat_service');
-var log = require('debug')('chat_service:www');
+var log = require('debug')('chat:www');
 var http = require('http');
 const pid = process.pid;
 const cluster = require('cluster');

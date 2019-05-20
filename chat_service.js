@@ -3,7 +3,7 @@ const winston = require('./lib/utils/logger');
 const server = require('http').createServer(app);
 const express = require('express');
 const config = require('./lib/config/config');
-const log = require('debug')('chat_service');
+const log = require('debug')('chat');
 const morgan = require('morgan');
 const path = require('path');
 const cookieParser =  require('cookie-parser');
@@ -14,13 +14,10 @@ const start_dao = require('./lib/dao/start_dao');
 const io = require('socket.io')(server , {
 	transports: ['websocket'],
 });
-//const errorHandler = require('./lib/handlers/errorHandler')
-//View engine setup
-//const app.set('views', path.join(__dirname, 'views'))
-//const app.set('view engine', 'jade')
 // MiddleWares
 io.use((socket, next) => {
-	log('socket unCompelete -------------------');
+	log({socket});
+	
 	const user_id = socket.handshake.query.user_id;
 	if(user_id) {
 		return next();
