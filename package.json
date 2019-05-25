@@ -8,7 +8,7 @@
     "start": "node chat_service.js",
     "serve": "node dist/www.js",
     "test": "jest --verbose",
-    "debug": "DEBUG=chat_service:* node chat_service.js",
+    "debug": "DEBUG=chat:* node chat_service.js",
     "eslint": "./node_modules/.bin/eslint"
   },
   "author": "Hamid <hamidmk2121@gmail.com>",
